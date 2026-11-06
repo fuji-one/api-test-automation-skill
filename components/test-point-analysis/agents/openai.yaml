@@ -1,0 +1,4 @@
+interface:
+  display_name: "测试点分析产物"
+  short_description: "生成测试点分析与接口结构化契约产物"
+  default_prompt: "Use $test-point-analysis to generate standardized Markdown test point analysis artifacts, interface structured contract lists, and traceable coverage object IDs for downstream interface test case design."

@@ -1,0 +1,50 @@
+base_url: ""
+timeout: 10
+headers: {}
+auth:
+  enabled: false
+  type: "bearer"
+  placement: "header"
+  token_name: ""
+  token_prefix: "Bearer"
+  token_value: ""
+  method_overrides: {}
+  token_request:
+    method: ""
+    path: ""
+    headers: {}
+    params: {}
+    json: {}
+    expected_status: 200
+    extract_path: ""
+transport_encryption:
+  enabled: false
+  plaintext_flow_model: true
+  default_policy: "plain_http"
+  mode: ""
+  algorithm_ref: ""
+  key_source_ref: ""
+  public_key: ""
+  encrypt_methods:
+    - "POST"
+  request_payload_scope: ""
+  request_plaintext_serialization: ""
+  request_envelope_field: "data"
+  response_decrypt_field: "data"
+  default_query: {}
+  auth_paths: []
+  no_encrypt_paths: []
+  default_device_id: "api-framework-device"
+  common_fields: {}
+  request_envelope:
+    ciphertext_field: "data"
+    body_shape:
+      data: "<ciphertext>"
+  response_envelope:
+    outer_json_plaintext: true
+    ciphertext_field: "data"
+    decrypt_when: "field_is_string"
+    parse_decrypted_json: true
+  confirmed_encrypted_interfaces: []
+  confirmed_no_encrypt_interfaces: []
+  python_adapter_status: "not_required"

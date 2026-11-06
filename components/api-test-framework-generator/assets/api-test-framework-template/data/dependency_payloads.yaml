@@ -1,0 +1,4 @@
+schema_version: 1
+dependency_payloads:
+  description: "上游响应依赖通过 JSON 路径或正则表达式提取后传递给下游"
+  cases: {}

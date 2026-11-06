@@ -1,0 +1,4 @@
+interface:
+  display_name: "源码接口事实抽取"
+  short_description: "从 Java 后端源码抽取接口资产、契约、调用链与 DB 副作用事实"
+  default_prompt: "使用 $source-api-fact-extractor 从当前后端项目源码中抽取接口事实基线。"

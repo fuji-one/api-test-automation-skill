@@ -1,0 +1,6 @@
+interface:
+  display_name: "接口测试用例设计"
+  short_description: "基于覆盖对象池和接口契约生成用例设计"
+  default_prompt: "Use $interface-testcase-design to generate one fully traceable interface test case design document from coverage matrices, test point analysis artifacts, and interface structured contract lists."
+policy:
+  allow_implicit_invocation: true

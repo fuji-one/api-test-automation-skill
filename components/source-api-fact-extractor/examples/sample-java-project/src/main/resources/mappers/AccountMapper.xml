@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<mapper namespace="com.example.mapper.AccountMapper">
+    <select id="existsByUserId" resultType="boolean">
+        select count(1) > 0 from account where user_id = #{userId}
+    </select>
+
+    <insert id="insertAccount">
+        insert into account (user_id, account_name, status, balance)
+        values (#{userId}, #{accountName}, #{status}, #{initialBalance})
+    </insert>
+
+    <select id="selectByUserId" resultType="com.example.vo.AccountResponse">
+        select id as accountId, user_id as userId, status, balance
+        from account
+        where user_id = #{userId}
+    </select>
+
+    <select id="selectById" resultType="com.example.vo.AccountResponse">
+        select id as accountId, user_id as userId, status, balance
+        from account
+        where id = #{accountId}
+    </select>
+</mapper>

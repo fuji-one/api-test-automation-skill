@@ -1,0 +1,23 @@
+sql_generation_gate:
+  status: "blocked"
+  passed: false
+  reason: "未生成 SQL 命令"
+  source_files: []
+  quality_checks:
+    table_structure_verified: false
+    knowledge_graph_verified: false
+    ownership_boundary_verified: false
+    cleanup_scope_verified: false
+    id_cleanup_verified: false
+    insert_exit_gate_verified: false
+    delete_exit_gate_verified: false
+    api_insufficiency_verified: false
+    dangerous_sql_rejected: false
+    sql_syntax_verified: false
+    sql_logic_verified: false
+    seed_scope_guard_verified: false
+    historical_shape_reference_verified: false
+    runtime_validation_verified: false
+  allowed_tables: []
+  validation_report: "data/case_sql_validation.yaml"
+cases: {}

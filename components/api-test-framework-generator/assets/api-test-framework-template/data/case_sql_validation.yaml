@@ -1,0 +1,6 @@
+sql_validation:
+  status: "blocked"
+  static_validation: "pending"
+  runtime_validation: "pending"
+  reason: "未执行 SQL 静态校验和运行预检"
+  checked_cases: []

@@ -1,0 +1,39 @@
+schema_version: 1
+stage: executable_interface_case_set
+status: pending_user_input
+long_chain_scope:
+  required_flow_count: 0
+  executable_long_chain_case_count: 0
+open_required_count: 0
+filled_count: 0
+items:
+  - missing_id: "LCMV-001"
+    flow_id: ""
+    business_scenario: ""
+    executable_case_id: ""
+    design_case_id: ""
+    step_order: 1
+    interface: ""
+    field_location: "body"
+    field_path: ""
+    missing_value_type: "external_dependency_value"
+    field_meaning: ""
+    required_account_role: "none"
+    required_account_business_state: ""
+    allowed_fill_forms:
+      - concrete_value
+      - variable_ref
+      - secret_ref
+      - file_ref
+      - sandbox_ref
+      - mock_ref
+      - callback_payload_ref
+      - precondition_api_ref
+    user_fill_status: missing
+    user_value_ref: ""
+    fill_target_refs:
+      - "执行级接口用例集.md#..."
+      - "前置数据构造规则.md#..."
+    source_refs: []
+    blocking_reason: ""
+blocking_issues: []

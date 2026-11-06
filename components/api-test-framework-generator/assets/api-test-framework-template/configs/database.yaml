@@ -1,0 +1,21 @@
+dev:
+  enabled: false
+  connection_url: ""
+  sql_commands_file: "data/case_sql_commands.yaml"
+  engine_options:
+    pool_pre_ping: true
+    pool_recycle_seconds: 300
+test:
+  enabled: false
+  connection_url: ""
+  sql_commands_file: "data/case_sql_commands.yaml"
+  engine_options:
+    pool_pre_ping: true
+    pool_recycle_seconds: 300
+prod:
+  enabled: false
+  connection_url: ""
+  sql_commands_file: "data/case_sql_commands.yaml"
+  engine_options:
+    pool_pre_ping: true
+    pool_recycle_seconds: 300

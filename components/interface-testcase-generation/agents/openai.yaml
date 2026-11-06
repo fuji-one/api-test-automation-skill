@@ -1,0 +1,6 @@
+interface:
+  display_name: "接口测试用例生成"
+  short_description: "先质检设计文档与契约清单，再生成可追溯接口测试用例"
+  default_prompt: "Use $interface-testcase-generation to generate interface test cases from a pre-doc-analysis-pipeline test case design document and structured contract list."
+policy:
+  allow_implicit_invocation: true

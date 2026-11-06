@@ -1,0 +1,6 @@
+interface:
+  display_name: "前置文档解析分析"
+  short_description: "编排前置校验、接口契约、用例设计和执行报告"
+  default_prompt: "Use $pre-doc-analysis-pipeline to run the full Markdown document analysis pipeline from PRD/API/system-analysis precheck to test point analysis, interface structured contracts, interface test case design, and a skill execution report, producing only the three final deliverables."
+policy:
+  allow_implicit_invocation: true

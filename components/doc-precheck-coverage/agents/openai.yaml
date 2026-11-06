@@ -1,0 +1,6 @@
+interface:
+  display_name: "文档前置校验"
+  short_description: "从宏观和细粒度校验三类Markdown文档覆盖完整性"
+  default_prompt: "Use $doc-precheck-coverage to validate PRD, API, and system-analysis Markdown documents before generating fully traceable test scenarios."
+policy:
+  allow_implicit_invocation: true

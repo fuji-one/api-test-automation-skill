@@ -1,0 +1,4 @@
+interface:
+  display_name: "API Test Framework Generator"
+  short_description: "生成 pytest+requests+allure 接口自动化脚本"
+  default_prompt: "Use $api-test-framework-generator to convert execution-level API case Markdown into a pytest+requests+allure framework."

@@ -1,0 +1,4 @@
+interface:
+  display_name: "Executable Interface Case Set"
+  short_description: "生成带表结构、关系图、铺数和清理规则的执行级接口用例"
+  default_prompt: "Use $executable-interface-case-set to turn design cases, contracts, data models, table knowledge graphs, optional runtime evidence, and Apifox evidence into execution-level API cases."

@@ -1,0 +1,100 @@
+schema_version: 1
+artifact_type: runtime_execution_config
+
+# 必填 | 真实含义：本次运行配置名称，便于在 evidence/source_ref 中引用。
+config_name: ""
+
+environment:
+  # 必填 | 真实含义：运行环境名称。建议填写 test/staging/pre/prod/custom 等稳定环境标识。
+  env_name: ""
+  # 必填 | 真实含义：当前环境是否为隔离测试环境。只有 true 时，测试用例范围内的默认执行授权和 DB 最小范围查询/清理授权可直接生效。
+  is_test_environment: null
+  # 必填 | 真实含义：网关统一前缀或上下文路径，例如 /v2/project/app；没有网关前缀时填空字符串。
+  gateway_prefix: ""
+  # 必填 | 真实含义：接口模块到真实 base URL 的映射；每个本次用例涉及的模块都必须填写。
+  modules:
+    - module_key: ""
+      # 必填 | 真实含义：给用户看的模块名称，例如 用户模块、账户模块、互动模块。
+      module_name: ""
+      # 必填 | 真实含义：该模块在当前环境下可请求的完整 base URL，不包含具体接口 path。
+      base_url: ""
+      # 可选 | 真实含义：当单个模块网关前缀不同于 environment.gateway_prefix 时填写。
+      gateway_prefix_override: ""
+
+execution_authorization:
+  # 必填 | 真实含义：是否授权“本次选中/生成的用例范围内接口”默认可执行。
+  selected_case_scope_authorized_by_default: false
+  # 必填 | 真实含义：授权作用范围，只能指向本次设计级/执行级用例分母或 required flow 分母。
+  allowed_scope_ref: "04-design-case-handoff/case_list.yaml"
+  # 必填 | 真实含义：是否允许执行不在本次用例分母内、仅由路由扫描发现的接口；正常应为 false。
+  execute_outside_case_scope: false
+
+db_authorization:
+  # 必填 | 真实含义：是否允许对源码调用链明确涉及的表做 before/after 查询。
+  allow_source_bound_before_after_query: false
+  # 必填 | 真实含义：是否允许按本次执行产生的 ID 或唯一归属键清理/恢复本次测试数据。
+  allow_current_run_cleanup: false
+  # 必填 | 真实含义：当 environment.is_test_environment=false 时，必须重新明确授权 DB 查询和清理；否则 DB 操作一律阻塞。
+  require_reauthorization_when_non_test: true
+  # 条件必填 | 真实含义：非测试环境下的显式 DB 查询授权。仅当 is_test_environment=false 且确需 DB before/after 时填写 true。
+  non_test_allow_before_after_query: false
+  # 条件必填 | 真实含义：非测试环境下的显式清理/恢复授权。仅当 is_test_environment=false 且确需清理时填写 true。
+  non_test_allow_cleanup: false
+  # 条件必填 | 真实含义：非测试环境重新授权说明，需写明授权人、授权范围、环境、表范围和清理边界。
+  non_test_authorization_statement: ""
+
+accounts:
+  # 必填 | 真实含义：账号池。每个本次用例需要的业务角色都必须至少提供一个账号或密钥引用。
+  - account_key: ""
+    # 必填 | 真实含义：账号业务角色，例如 female、male、operator、admin、merchant、partner、internal_scheduler、callback_provider、other。
+    role: ""
+    # 必填 | 真实含义：账号当前业务状态，例如 已完成入驻、未入驻、审核通过、钱包正常、有订阅、无订阅、运营可登录。
+    business_state: ""
+    # 可选 | 真实含义：账号适用的模块或用例范围。
+    scope_refs: []
+    login:
+      # 必填 | 真实含义：登录或鉴权方式，例如 sms、password、apple、oauth、token、api_key、other。
+      method: ""
+      # 必填 | 真实含义：账号标识的密钥引用，例如手机号、邮箱、openId、用户名、clientId；不要在产物中写明文敏感值。
+      identifier_ref: ""
+      # 条件必填 | 真实含义：凭证密钥引用，例如验证码、密码、token、secret、私钥；动态登录需要时填写。
+      credential_ref: ""
+      # 可选 | 真实含义：第三方登录或开放平台账号标识引用，例如 openId、unionId、providerUserId。
+      provider_identity_ref: ""
+
+auth_crypto:
+  auth:
+    # 必填 | 真实含义：登录接口所在模块；必须能映射到 environment.modules.module_key。
+    login_module: ""
+    # 必填 | 真实含义：登录接口 HTTP method。
+    login_method: ""
+    # 必填 | 真实含义：登录接口 path，不包含 base URL。
+    login_path: ""
+    # 必填 | 真实含义：token 在登录响应中的提取路径；如使用静态 token，则写 token 的密钥引用来源。
+    token_source_ref: ""
+    # 必填 | 真实含义：token 注入接口请求的位置、名称和格式。
+    token_injection:
+      location: "header"
+      name: "Authorization"
+      format: "Bearer ${token}"
+  transport_encryption:
+    # 必填 | 真实含义：当前接口请求/响应是否需要传输层加解密。
+    enabled: false
+    # 条件必填 | 真实含义：加解密算法实现或算法资料引用；enabled=true 时必须填写。
+    algorithm_ref: ""
+    # 条件必填 | 真实含义：未登录、已登录或不同角色下的 key 来源；enabled=true 时必须填写。
+    key_source_ref: ""
+    # 条件必填 | 真实含义：请求明文范围，例如 whole_parameter_dictionary、body_only、data_field_only。
+    request_payload_scope: ""
+    # 条件必填 | 真实含义：请求明文序列化方式，例如 json_utf8、form_urlencoded。
+    request_plaintext_serialization: ""
+    # 条件必填 | 真实含义：请求报文包装方式，例如 JSON body 的 data 字段。
+    request_envelope: ""
+    # 条件必填 | 真实含义：响应报文包装和解密方式，例如外层 JSON 明文、data 字段密文。
+    response_envelope: ""
+
+runtime_inputs:
+  # 可选 | 真实含义：外部回调、支付沙箱、文件上传、第三方审核等用例需要的额外沙箱输入引用。
+  external_sandbox_refs: []
+  # 可选 | 真实含义：本次运行生成唯一测试数据时使用的 run 标记前缀，便于 DB 查询和清理归属。
+  run_marker_prefix: ""

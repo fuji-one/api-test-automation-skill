@@ -1,0 +1,6 @@
+interface:
+  display_name: "API Automation Pipeline Suite"
+  short_description: "Bundled gated API automation pipeline with runtime evidence planning"
+  default_prompt: "Use $api-automation-pipeline-suite to run a gated API automation pipeline from Java source or API documents, including risk-gated runtime evidence planning when executable coverage needs requester evidence."
+policy:
+  allow_implicit_invocation: true

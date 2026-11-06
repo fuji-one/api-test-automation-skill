@@ -1,0 +1,8 @@
+split_index:
+  status: "not_required"
+  strategy: "unsplit"
+  ordering:
+    status: "not_required"
+    mode: "source_order"
+    execution_order: []
+  modules: {}

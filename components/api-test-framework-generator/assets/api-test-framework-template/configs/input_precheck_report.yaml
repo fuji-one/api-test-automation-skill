@@ -1,0 +1,28 @@
+stage: "input_precheck"
+status: "blocked"
+source_files:
+  execution_cases: ""
+  precondition_rules: ""
+  data_model: ""
+checks:
+  file_availability: "pending"
+  encoding_quality: "pending"
+  stage_status: "pending"
+  case_traceability: "pending"
+  precondition_consistency: "pending"
+  token_auth_compatibility: "pending"
+  dependency_payload_contract: "pending"
+  assertion_executability: "pending"
+  database_assertion_fixture_readiness: "pending"
+  precondition_construction_priority: "pending"
+  database_cleanup_identity: "pending"
+  sql_mutation_exit_gate: "pending"
+  transport_encryption_policy: "pending"
+  transport_crypto_contract: "pending"
+  variable_python_compatibility: "pending"
+  data_model_completeness: "pending"
+  cross_file_consistency: "pending"
+  sql_readiness: "pending"
+missing_items: []
+blocking_issues:
+  - "尚未执行输入前置校验"

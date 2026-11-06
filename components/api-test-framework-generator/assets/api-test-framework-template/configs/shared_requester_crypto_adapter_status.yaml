@@ -1,0 +1,36 @@
+schema_version: 1
+stage: "shared_requester_crypto_adapter"
+status: "not_required"
+validation_scope:
+  scope_type: "all_generated_cases"
+  target_subset: ""
+  target_case_count: 0
+  target_case_ids_ref: ""
+  changed_shared_files: []
+contract:
+  source_ref: ""
+  algorithm: ""
+  request_envelope: ""
+  request_plaintext_scope: ""
+  login_key_source: ""
+  business_key_source: ""
+  business_cipher_suffix: ""
+  response_rule: ""
+implementation:
+  requester_reuse: "shared_requests_session_in_core_client"
+  codec: ""
+  policy: "core.transport_crypto.TransportEncryptionPolicy"
+  dependency_check: ""
+static_validation:
+  python_vs_source_ciphertext: "not_checked"
+  hash_or_signature_match_source: "not_checked"
+  roundtrip_decrypt: "not_checked"
+  synthetic_response_decrypt: "not_checked"
+  dependency_check: "not_checked"
+  python_ast_parse: "not_checked"
+  pytest_collect_only_existing_cases: "not_checked"
+release_boundary:
+  live_pytest_ready_count: 0
+  smoke_condition_ready_count: 0
+  next_required_action: ""
+  not_released_reason: ""

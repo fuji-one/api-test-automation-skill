@@ -1,0 +1,1 @@
+-r components/api-test-framework-generator/assets/api-test-framework-template/requirements.txt
