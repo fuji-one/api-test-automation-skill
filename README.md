@@ -1,6 +1,8 @@
-# API Automation Pipeline Suite
+# API Test Automation Skill
 
 面向 Codex 的中文接口自动化 Skill 套件。支持 **Java 源码路线** 和 **业务文档路线**，将输入中的接口与业务事实逐步转化为测试设计、执行级用例和 pytest + requests + Allure 工程。
+
+GitHub 仓库名为 `api-test-automation-skill`；SKILL 的内部名称和调用名仍为 `api-automation-pipeline-suite`，与 `SKILL.md` 的 `name` 一致。仓库改名没有更改调用方式。
 
 核心能力是 **以 100% 可追溯覆盖为阶段准出目标，以来源证据、逐用例置信度和执行闭环约束生成准确性**。每个阶段都留下可检查的覆盖清单、来源映射和门禁结果，让遗漏、冲突和执行条件缺口能够被定位。
 
@@ -81,6 +83,8 @@ Java 源码与配置
 
 适用于 Spring MVC / Spring Boot、Feign、Dubbo/RPC、MyBatis、JPA / Repository 等源码可见结构。扫描 `.java`、`.xml`、`.yml`、`.yaml`、`.properties`，默认跳过工程产物、历史文档、测试与依赖目录，降低无关样例混入事实清单的风险。
 
+源码抽取属于静态分析，不等同于编译器或完整运行时调用分析；动态分派、反射及外部系统行为可能无法确认，需保留未知项并补充证据。Dubbo/RPC 的支持指源码事实识别；内置 `requests` 模板执行 HTTP 接口，未提供直接调用 Dubbo/RPC 的客户端。
+
 源码路线不要求同时提供 PRD、API 和系统分析文档。继续到执行级或工程级时，如缺少归一化数据模型，先检查可用数据库 MCP 能否提供 schema、关系及约束证据，并完成源码—数据库一致性对账；仍无法确认时才报告相应执行输入阻塞。数据库 MCP 是上游证据源，生成工程不依赖 MCP 运行。
 
 调用示例：
@@ -110,9 +114,11 @@ PRD + API + 系统分析 + 数据模型
 ```text
 使用 $api-automation-pipeline-suite。
 输入：<PRD.md>、<API.md>、<系统分析.md>、<数据模型.md>
+执行配置（已有时）：<运行环境、鉴权账号引用及授权范围配置文件>
 输出目录：<产物绝对路径>
 目标深度：framework
 走文档路线，先校验文档质量，再生成可追溯用例和自动化工程。
+若缺少执行输入，先完成可准出的设计与交接，再列出缺失配置及阻塞阶段。
 ```
 
 ### 两条路线共用的交付深度
@@ -150,6 +156,8 @@ PRD + API + 系统分析 + 数据模型
 
 将整个项目目录复制到 Codex 的个人 skills 目录，保持目录名为 `api-automation-pipeline-suite`，并保留所有子目录。Windows 常见路径为 `%USERPROFILE%\.codex\skills\api-automation-pipeline-suite`。
 
+从本仓库下载 ZIP 后，将解压得到的 `api-test-automation-skill-main` 文件夹改名为 `api-automation-pipeline-suite` 后再复制；安装目录内应直接包含根 `SKILL.md`、`agents/`、`components/`、`references/` 和 `scripts/`，不要多套一层目录。
+
 在支持 skill 的代理中显式调用，例如：
 
 ```text
@@ -163,7 +171,7 @@ PRD + API + 系统分析 + 数据模型
 
 ## 本地开发与验证
 
-Python 3.10+。在项目根目录运行：
+开发依赖锁定和 CI 配置范围为 Python 3.10–3.12、Windows/Linux；本机实测环境为 Windows / Python 3.11。其他 Python 版本及 macOS 尚未在本项目验证。在项目根目录运行：
 
 ```sh
 python -m venv .venv
